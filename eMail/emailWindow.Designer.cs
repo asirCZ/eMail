@@ -1,0 +1,268 @@
+﻿namespace eMail
+{
+    partial class emailWindow
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.emailList = new System.Windows.Forms.DataGridView();
+            this.appPanel = new System.Windows.Forms.Panel();
+            this.registerPanel = new System.Windows.Forms.Panel();
+            this.errorLabelReg = new System.Windows.Forms.Label();
+            this.repeatLabel = new System.Windows.Forms.Label();
+            this.regRepeatTxt = new System.Windows.Forms.TextBox();
+            this.regPasswordLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.regUsernameLabel = new System.Windows.Forms.Label();
+            this.regPasswordTxt = new System.Windows.Forms.TextBox();
+            this.regUserTxt = new System.Windows.Forms.TextBox();
+            this.loginPanel = new System.Windows.Forms.Panel();
+            this.errorLabelLog = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
+            this.usernameTxt = new System.Windows.Forms.TextBox();
+            this.passwordTxt = new System.Windows.Forms.TextBox();
+            this.loginBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.emailList)).BeginInit();
+            this.appPanel.SuspendLayout();
+            this.registerPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // emailList
+            // 
+            this.emailList.AllowUserToAddRows = false;
+            this.emailList.AllowUserToDeleteRows = false;
+            this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.emailList.Location = new System.Drawing.Point(99, 22);
+            this.emailList.Name = "emailList";
+            this.emailList.ReadOnly = true;
+            this.emailList.Size = new System.Drawing.Size(328, 225);
+            this.emailList.TabIndex = 0;
+            this.emailList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // appPanel
+            // 
+            this.appPanel.Controls.Add(this.emailList);
+            this.appPanel.Location = new System.Drawing.Point(798, 12);
+            this.appPanel.Name = "appPanel";
+            this.appPanel.Size = new System.Drawing.Size(457, 610);
+            this.appPanel.TabIndex = 1;
+            // 
+            // registerPanel
+            // 
+            this.registerPanel.Controls.Add(this.errorLabelReg);
+            this.registerPanel.Controls.Add(this.repeatLabel);
+            this.registerPanel.Controls.Add(this.regRepeatTxt);
+            this.registerPanel.Controls.Add(this.regPasswordLabel);
+            this.registerPanel.Controls.Add(this.button1);
+            this.registerPanel.Controls.Add(this.regUsernameLabel);
+            this.registerPanel.Controls.Add(this.regPasswordTxt);
+            this.registerPanel.Controls.Add(this.regUserTxt);
+            this.registerPanel.Location = new System.Drawing.Point(377, 12);
+            this.registerPanel.Name = "registerPanel";
+            this.registerPanel.Size = new System.Drawing.Size(406, 610);
+            this.registerPanel.TabIndex = 2;
+            // 
+            // errorLabelReg
+            // 
+            this.errorLabelReg.ForeColor = System.Drawing.Color.Red;
+            this.errorLabelReg.Location = new System.Drawing.Point(25, 480);
+            this.errorLabelReg.Name = "errorLabelReg";
+            this.errorLabelReg.Size = new System.Drawing.Size(353, 118);
+            this.errorLabelReg.TabIndex = 6;
+            // 
+            // repeatLabel
+            // 
+            this.repeatLabel.AutoSize = true;
+            this.repeatLabel.Location = new System.Drawing.Point(12, 385);
+            this.repeatLabel.Name = "repeatLabel";
+            this.repeatLabel.Size = new System.Drawing.Size(93, 13);
+            this.repeatLabel.TabIndex = 11;
+            this.repeatLabel.Text = "Repeat password:";
+            // 
+            // regRepeatTxt
+            // 
+            this.regRepeatTxt.Location = new System.Drawing.Point(111, 385);
+            this.regRepeatTxt.Name = "regRepeatTxt";
+            this.regRepeatTxt.Size = new System.Drawing.Size(267, 20);
+            this.regRepeatTxt.TabIndex = 10;
+            this.regRepeatTxt.UseSystemPasswordChar = true;
+            // 
+            // regPasswordLabel
+            // 
+            this.regPasswordLabel.AutoSize = true;
+            this.regPasswordLabel.Location = new System.Drawing.Point(47, 359);
+            this.regPasswordLabel.Name = "regPasswordLabel";
+            this.regPasswordLabel.Size = new System.Drawing.Size(56, 13);
+            this.regPasswordLabel.TabIndex = 9;
+            this.regPasswordLabel.Text = "Password:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(137, 432);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(189, 45);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Register";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // regUsernameLabel
+            // 
+            this.regUsernameLabel.AutoSize = true;
+            this.regUsernameLabel.Location = new System.Drawing.Point(47, 336);
+            this.regUsernameLabel.Name = "regUsernameLabel";
+            this.regUsernameLabel.Size = new System.Drawing.Size(58, 13);
+            this.regUsernameLabel.TabIndex = 8;
+            this.regUsernameLabel.Text = "Username:";
+            // 
+            // regPasswordTxt
+            // 
+            this.regPasswordTxt.Location = new System.Drawing.Point(111, 359);
+            this.regPasswordTxt.Name = "regPasswordTxt";
+            this.regPasswordTxt.Size = new System.Drawing.Size(267, 20);
+            this.regPasswordTxt.TabIndex = 6;
+            this.regPasswordTxt.UseSystemPasswordChar = true;
+            // 
+            // regUserTxt
+            // 
+            this.regUserTxt.Location = new System.Drawing.Point(111, 333);
+            this.regUserTxt.MaxLength = 200;
+            this.regUserTxt.Name = "regUserTxt";
+            this.regUserTxt.Size = new System.Drawing.Size(267, 20);
+            this.regUserTxt.TabIndex = 7;
+            this.regUserTxt.Tag = "";
+            // 
+            // loginPanel
+            // 
+            this.loginPanel.Controls.Add(this.errorLabelLog);
+            this.loginPanel.Controls.Add(this.passwordLabel);
+            this.loginPanel.Controls.Add(this.usernameLabel);
+            this.loginPanel.Controls.Add(this.usernameTxt);
+            this.loginPanel.Controls.Add(this.passwordTxt);
+            this.loginPanel.Controls.Add(this.loginBtn);
+            this.loginPanel.Location = new System.Drawing.Point(12, 12);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(359, 610);
+            this.loginPanel.TabIndex = 3;
+            // 
+            // errorLabelLog
+            // 
+            this.errorLabelLog.ForeColor = System.Drawing.Color.Red;
+            this.errorLabelLog.Location = new System.Drawing.Point(3, 463);
+            this.errorLabelLog.Name = "errorLabelLog";
+            this.errorLabelLog.Size = new System.Drawing.Size(353, 135);
+            this.errorLabelLog.TabIndex = 5;
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(9, 356);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(56, 13);
+            this.passwordLabel.TabIndex = 4;
+            this.passwordLabel.Text = "Password:";
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(9, 333);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(58, 13);
+            this.usernameLabel.TabIndex = 3;
+            this.usernameLabel.Text = "Username:";
+            // 
+            // usernameTxt
+            // 
+            this.usernameTxt.Location = new System.Drawing.Point(73, 330);
+            this.usernameTxt.MaxLength = 200;
+            this.usernameTxt.Name = "usernameTxt";
+            this.usernameTxt.Size = new System.Drawing.Size(267, 20);
+            this.usernameTxt.TabIndex = 2;
+            this.usernameTxt.Tag = "";
+            // 
+            // passwordTxt
+            // 
+            this.passwordTxt.Location = new System.Drawing.Point(73, 356);
+            this.passwordTxt.Name = "passwordTxt";
+            this.passwordTxt.Size = new System.Drawing.Size(267, 20);
+            this.passwordTxt.TabIndex = 1;
+            this.passwordTxt.UseSystemPasswordChar = true;
+            // 
+            // loginBtn
+            // 
+            this.loginBtn.Location = new System.Drawing.Point(110, 391);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(189, 45);
+            this.loginBtn.TabIndex = 0;
+            this.loginBtn.Text = "Log in";
+            this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
+            // emailWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1263, 634);
+            this.Controls.Add(this.loginPanel);
+            this.Controls.Add(this.registerPanel);
+            this.Controls.Add(this.appPanel);
+            this.Name = "emailWindow";
+            this.Text = "Email Client";
+            ((System.ComponentModel.ISupportInitialize)(this.emailList)).EndInit();
+            this.appPanel.ResumeLayout(false);
+            this.registerPanel.ResumeLayout(false);
+            this.registerPanel.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
+            this.ResumeLayout(false);
+        }
+
+        private System.Windows.Forms.Label errorLabelReg;
+
+        private System.Windows.Forms.Label errorLabelLog;
+
+        #endregion
+
+        private System.Windows.Forms.DataGridView emailList;
+        private System.Windows.Forms.Panel appPanel;
+        private System.Windows.Forms.Panel registerPanel;
+        private System.Windows.Forms.Panel loginPanel;
+        private System.Windows.Forms.TextBox passwordTxt;
+        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.TextBox usernameTxt;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.Label repeatLabel;
+        private System.Windows.Forms.TextBox regRepeatTxt;
+        private System.Windows.Forms.Label regPasswordLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label regUsernameLabel;
+        private System.Windows.Forms.TextBox regPasswordTxt;
+        private System.Windows.Forms.TextBox regUserTxt;
+        private System.Windows.Forms.Label passwordLabel;
+    }
+}
+
