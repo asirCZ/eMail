@@ -1,6 +1,6 @@
 ﻿namespace eMail
 {
-    partial class emailWindow
+    partial class EmailWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -230,7 +230,7 @@
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.registerPanel);
             this.Controls.Add(this.appPanel);
-            this.Name = "emailWindow";
+            this.Name = "EmailWindow";
             this.Text = "Email Client";
             ((System.ComponentModel.ISupportInitialize)(this.emailList)).EndInit();
             this.appPanel.ResumeLayout(false);

@@ -4,16 +4,13 @@ using System.Data.SqlClient;
 
 namespace eMail
 {
-    public class DatabaseSingleton
+    public static class DatabaseSingleton
     {
-        private static SqlConnection conn = null;
-        private DatabaseSingleton()
-        {
+        private static SqlConnection _conn;
 
-        }
         public static SqlConnection GetInstance()
         {
-            if (conn == null)
+            if (_conn == null)
             {
                 SqlConnectionStringBuilder consStringBuilder = new SqlConnectionStringBuilder();
                 consStringBuilder.UserID = ReadSetting("Name");
@@ -21,11 +18,11 @@ namespace eMail
                 consStringBuilder.InitialCatalog = ReadSetting("Database");
                 consStringBuilder.DataSource = ReadSetting("DataSource");
                 consStringBuilder.ConnectTimeout = 1;
-                conn = new SqlConnection(consStringBuilder.ConnectionString);
+                _conn = new SqlConnection(consStringBuilder.ConnectionString);
                 Console.WriteLine(consStringBuilder.ConnectionString);
                 try
                 {
-                    conn.Open();
+                    _conn.Open();
                 }
                 catch (SqlException)
                 {
@@ -34,29 +31,32 @@ namespace eMail
                     consStringBuilder.DataSource = ReadSetting("DataSourceWin");
                     consStringBuilder.IntegratedSecurity = true;
                     consStringBuilder.ConnectTimeout = 1;
-                    conn = new SqlConnection(consStringBuilder.ConnectionString);
-                    conn.Open();
+                    _conn = new SqlConnection(consStringBuilder.ConnectionString);
+                    _conn.Open();
                 }
 
             }
 
-            return conn;
+            return _conn;
         }
 
         public static void CloseConnection()
         {
             try
             {
-                if (conn != null)
+                if (_conn != null)
                 {
-                    conn.Close();
-                    conn.Dispose();
+                    _conn.Close();
+                    _conn.Dispose();
                 }
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
             finally
             {
-                conn = null;
+                _conn = null;
             }
         }
 

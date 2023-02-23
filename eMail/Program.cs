@@ -16,7 +16,7 @@ namespace eMail
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new emailWindow());
+            Application.Run(new EmailWindow());
         }
     }
 }

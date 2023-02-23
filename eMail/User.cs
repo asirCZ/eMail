@@ -1,35 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eMail
 {
     internal class User
     {
-        private Guid id;
-        private string username;
-        private string password;
+        private Guid _id;
+        private string _username;
+        private string _password;
 
-        public Guid Id => id;
+        public Guid Id => _id;
 
         public User(string username, string password)
         {
-            this.username = username;
-            this.password = password;
+            this._username = username;
+            this._password = password;
         }
 
         public bool UserExists()
         {
             SqlConnection conn = DatabaseSingleton.GetInstance();
-            string selUsername = null;
+            string selUsername;
 
             using (SqlCommand command = new SqlCommand("SELECT Username FROM Accounts WHERE Username = @name", conn))
             {
-                command.Parameters.Add(new SqlParameter("@name", username));
+                command.Parameters.Add(new SqlParameter("@name", _username));
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -43,7 +38,7 @@ namespace eMail
                 }
             }
 
-            return username == selUsername;
+            return _username == selUsername;
         }
 
         public bool PasswordMatches()
@@ -52,13 +47,13 @@ namespace eMail
             using (SqlCommand command =
                    new SqlCommand("SELECT Guid FROM Accounts WHERE Username = @name AND Password = @pass", conn))
             {
-                command.Parameters.Add(new SqlParameter("@name", username));
-                command.Parameters.Add(new SqlParameter("@pass", password));
+                command.Parameters.Add(new SqlParameter("@name", _username));
+                command.Parameters.Add(new SqlParameter("@pass", _password));
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        id = Guid.ParseExact(reader[0].ToString(), "N");
+                        _id = Guid.ParseExact(reader[0].ToString(), "N");
                         return true;
                     }
                     else
