@@ -49,11 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseSingleton.cs" />
-    <Compile Include="emailWindow.cs">
+    <Compile Include="EmailWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="emailWindow.Designer.cs">
-      <DependentUpon>emailWindow.cs</DependentUpon>
+    <Compile Include="EmailWindow.Designer.cs">
+      <DependentUpon>EmailWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="IBaseClass.cs" />
     <Compile Include="IDAO.cs" />
@@ -62,10 +62,22 @@
     <Compile Include="PasswordEncryption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadEmail.Designer.cs">
+      <DependentUpon>ReadEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserDAO.cs" />
-    <EmbeddedResource Include="emailWindow.resx">
-      <DependentUpon>emailWindow.cs</DependentUpon>
+    <Compile Include="WriteEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WriteEmail.Designer.cs">
+      <DependentUpon>WriteEmail.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EmailWindow.resx">
+      <DependentUpon>EmailWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +88,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReadEmail.resx">
+      <DependentUpon>ReadEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WriteEmail.resx">
+      <DependentUpon>WriteEmail.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

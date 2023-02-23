@@ -34,6 +34,14 @@ namespace eMail
             Password = password;
         }
 
+        public User(int id, string username, string password, bool encrypted)
+        {
+            _id = id;
+            _username = username;
+            _password = password;
+            _encrypted = encrypted;
+        }
+
         public void EncryptPassword()
         {
             _password = PasswordEncryption.EncryptPassword(_password);

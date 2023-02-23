@@ -30,6 +30,7 @@
         {
             this.emailList = new System.Windows.Forms.DataGridView();
             this.appPanel = new System.Windows.Forms.Panel();
+            this.newMailBtn = new System.Windows.Forms.Button();
             this.registerPanel = new System.Windows.Forms.Panel();
             this.errorLabelReg = new System.Windows.Forms.Label();
             this.repeatLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.regPasswordTxt = new System.Windows.Forms.TextBox();
             this.regUserTxt = new System.Windows.Forms.TextBox();
             this.loginPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.errorLabelLog = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
@@ -54,24 +56,39 @@
             // 
             // emailList
             // 
+            this.emailList.AllowDrop = true;
             this.emailList.AllowUserToAddRows = false;
-            this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.emailList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.emailList.Location = new System.Drawing.Point(27, 22);
             this.emailList.Name = "emailList";
             this.emailList.ReadOnly = true;
+            this.emailList.RowTemplate.ReadOnly = true;
             this.emailList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.emailList.Size = new System.Drawing.Size(400, 251);
             this.emailList.StandardTab = true;
             this.emailList.TabIndex = 0;
-            this.emailList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.emailList_CellContentClick);
+            this.emailList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.emailList_DoubleClick);
+            this.emailList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.emailList_DeletingRow);
             // 
             // appPanel
             // 
+            this.appPanel.Controls.Add(this.newMailBtn);
             this.appPanel.Controls.Add(this.emailList);
-            this.appPanel.Location = new System.Drawing.Point(798, 12);
+            this.appPanel.Location = new System.Drawing.Point(794, 12);
             this.appPanel.Name = "appPanel";
             this.appPanel.Size = new System.Drawing.Size(457, 610);
             this.appPanel.TabIndex = 1;
+            // 
+            // newMailBtn
+            // 
+            this.newMailBtn.Location = new System.Drawing.Point(323, 537);
+            this.newMailBtn.Name = "newMailBtn";
+            this.newMailBtn.Size = new System.Drawing.Size(104, 44);
+            this.newMailBtn.TabIndex = 1;
+            this.newMailBtn.Text = "Nový e-mail";
+            this.newMailBtn.UseVisualStyleBackColor = true;
+            this.newMailBtn.Click += new System.EventHandler(this.newMailBtn_Click);
             // 
             // registerPanel
             // 
@@ -83,7 +100,7 @@
             this.registerPanel.Controls.Add(this.regUsernameLabel);
             this.registerPanel.Controls.Add(this.regPasswordTxt);
             this.registerPanel.Controls.Add(this.regUserTxt);
-            this.registerPanel.Location = new System.Drawing.Point(377, 12);
+            this.registerPanel.Location = new System.Drawing.Point(382, 12);
             this.registerPanel.Name = "registerPanel";
             this.registerPanel.Size = new System.Drawing.Size(406, 610);
             this.registerPanel.TabIndex = 2;
@@ -135,7 +152,7 @@
             // regUsernameLabel
             // 
             this.regUsernameLabel.AutoSize = true;
-            this.regUsernameLabel.Location = new System.Drawing.Point(47, 336);
+            this.regUsernameLabel.Location = new System.Drawing.Point(45, 336);
             this.regUsernameLabel.Name = "regUsernameLabel";
             this.regUsernameLabel.Size = new System.Drawing.Size(58, 13);
             this.regUsernameLabel.TabIndex = 8;
@@ -160,6 +177,7 @@
             // 
             // loginPanel
             // 
+            this.loginPanel.Controls.Add(this.label1);
             this.loginPanel.Controls.Add(this.errorLabelLog);
             this.loginPanel.Controls.Add(this.passwordLabel);
             this.loginPanel.Controls.Add(this.usernameLabel);
@@ -170,6 +188,13 @@
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(359, 610);
             this.loginPanel.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 0;
             // 
             // errorLabelLog
             // 
@@ -228,12 +253,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1263, 634);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.registerPanel);
             this.Controls.Add(this.appPanel);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.HelpButton = true;
+            this.Location = new System.Drawing.Point(15, 15);
             this.Name = "EmailWindow";
-            this.Text = "Email Client";
             ((System.ComponentModel.ISupportInitialize)(this.emailList)).EndInit();
             this.appPanel.ResumeLayout(false);
             this.registerPanel.ResumeLayout(false);
@@ -242,6 +270,10 @@
             this.loginPanel.PerformLayout();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button newMailBtn;
+
+        private System.Windows.Forms.Label label1;
 
         private System.Windows.Forms.Label errorLabelReg;
 

@@ -20,3 +20,5 @@ D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.csproj.Genera
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.csproj.CoreCompileInputs.cache
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.exe
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.pdb
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.writeEmail.resources
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.ReadEmail.resources

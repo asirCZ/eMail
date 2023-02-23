@@ -6,31 +6,44 @@ public class Message : IBaseClass
 {
     private int _id;
     private string _subject;
+    private string _message;
     private DateTime _sendDate;
-    private int senderId;
-    private int receiverId;
-    private bool senderShow;
-    private bool receiverShow;
+    private int _senderId;
+    private int _receiverId;
+    private bool _senderShow;
+    private bool _receiverShow;
 
 
-    public Message(int id, string subject, DateTime sendDate, int senderId, int receiverId, bool senderShow, bool receiverShow)
+    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId, bool senderShow, bool receiverShow)
     {
         _id = id;
         _subject = subject;
+        Message1 = message;
         _sendDate = sendDate;
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.senderShow = senderShow;
-        this.receiverShow = receiverShow;
+        _senderId = senderId;
+        _receiverId = receiverId;
+        _senderShow = senderShow;
+        _receiverShow = receiverShow;
     }
 
-    public Message(string subject, int senderId, int receiverId)
+    public Message(string subject, string message, int senderId, int receiverId)
     {
         _subject = subject;
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.senderShow = true;
-        this.receiverShow = true;
+        Message1 = message;
+        _senderId = senderId;
+        _receiverId = receiverId;
+        _senderShow = true;
+        _receiverShow = true;
+    }
+
+    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId)
+    {
+        _id = id;
+        _subject = subject;
+        _message = message;
+        _sendDate = sendDate;
+        _senderId = senderId;
+        _receiverId = receiverId;
     }
 
     public string Subject
@@ -47,26 +60,26 @@ public class Message : IBaseClass
 
     public int SenderId
     {
-        get => senderId;
-        set => senderId = value;
+        get => _senderId;
+        set => _senderId = value;
     }
 
     public int ReceiverId
     {
-        get => receiverId;
-        set => receiverId = value;
+        get => _receiverId;
+        set => _receiverId = value;
     }
 
     public bool SenderShow
     {
-        get => senderShow;
-        set => senderShow = value;
+        get => _senderShow;
+        set => _senderShow = value;
     }
 
     public bool ReceiverShow
     {
-        get => receiverShow;
-        set => receiverShow = value;
+        get => _receiverShow;
+        set => _receiverShow = value;
     }
 
 
@@ -75,5 +88,10 @@ public class Message : IBaseClass
         get => _id;
         set => _id = value;
     }
-    
+
+    public string Message1
+    {
+        get => _message;
+        set => _message = value;
+    }
 }
