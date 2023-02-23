@@ -18,13 +18,23 @@ public class UserDAO : IDao<User>
 
     public void Save(User element)
     {
-        throw new System.NotImplementedException();
+        SqlConnection conn = DatabaseSingleton.GetInstance();
+
+        using (SqlCommand command =
+               new SqlCommand("INSERT INTO Accounts(Username, Password) VALUES (@name, @pass)", conn))
+        {
+            command.Parameters.Add(new SqlParameter("@name", element.Username));
+            command.Parameters.Add(new SqlParameter("@pass", element.Password));
+            command.ExecuteNonQuery();
+            command.CommandText = "Select @Identity";
+        }
     }
 
     public void Delete(User element)
     {
         throw new System.NotImplementedException();
     }
+
     public bool UserExists(User u)
     {
         SqlConnection conn = DatabaseSingleton.GetInstance();
@@ -48,21 +58,21 @@ public class UserDAO : IDao<User>
 
         return u.Username == selUsername;
     }
-    
+
     public bool PasswordMatches(User u)
     {
+        string receivedPassword;
         SqlConnection conn = DatabaseSingleton.GetInstance();
         using (SqlCommand command =
-               new SqlCommand("SELECT id FROM Accounts WHERE Username = @name AND Password = @pass", conn))
+               new SqlCommand("SELECT Password FROM Accounts WHERE Username = @name", conn))
         {
+            
             command.Parameters.Add(new SqlParameter("@name", u.Username));
-            command.Parameters.Add(new SqlParameter("@pass", u.Password));
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    u.Id = Convert.ToInt32(reader[0].ToString());
-                    return true;
+                    receivedPassword = reader[0].ToString();
                 }
                 else
                 {
@@ -70,5 +80,8 @@ public class UserDAO : IDao<User>
                 }
             }
         }
+
+        return PasswordEncryption.VerifyPassword(u.Password, receivedPassword);
+
     }
 }

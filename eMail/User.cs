@@ -8,6 +8,7 @@ namespace eMail
         private int _id;
         private string _username;
         private string _password;
+        private bool _encrypted = false;
 
         public int Id
         {
@@ -29,8 +30,14 @@ namespace eMail
 
         public User(string username, string password)
         {
-            this._username = username;
-            this._password = password;
+            Username = username;
+            Password = password;
+        }
+
+        public void EncryptPassword()
+        {
+            _password = PasswordEncryption.EncryptPassword(_password);
+            _encrypted = true;
         }
 
 

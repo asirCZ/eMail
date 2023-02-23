@@ -94,7 +94,7 @@
             this.errorLabelReg.Location = new System.Drawing.Point(25, 480);
             this.errorLabelReg.Name = "errorLabelReg";
             this.errorLabelReg.Size = new System.Drawing.Size(353, 118);
-            this.errorLabelReg.TabIndex = 6;
+            this.errorLabelReg.TabIndex = 9;
             // 
             // repeatLabel
             // 
@@ -110,7 +110,7 @@
             this.regRepeatTxt.Location = new System.Drawing.Point(111, 385);
             this.regRepeatTxt.Name = "regRepeatTxt";
             this.regRepeatTxt.Size = new System.Drawing.Size(267, 20);
-            this.regRepeatTxt.TabIndex = 10;
+            this.regRepeatTxt.TabIndex = 7;
             this.regRepeatTxt.UseSystemPasswordChar = true;
             // 
             // regPasswordLabel
@@ -127,7 +127,7 @@
             this.registerBtn.Location = new System.Drawing.Point(137, 432);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(189, 45);
-            this.registerBtn.TabIndex = 5;
+            this.registerBtn.TabIndex = 8;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
@@ -155,7 +155,7 @@
             this.regUserTxt.MaxLength = 200;
             this.regUserTxt.Name = "regUserTxt";
             this.regUserTxt.Size = new System.Drawing.Size(267, 20);
-            this.regUserTxt.TabIndex = 7;
+            this.regUserTxt.TabIndex = 5;
             this.regUserTxt.Tag = "";
             // 
             // loginPanel
@@ -177,7 +177,7 @@
             this.errorLabelLog.Location = new System.Drawing.Point(3, 463);
             this.errorLabelLog.Name = "errorLabelLog";
             this.errorLabelLog.Size = new System.Drawing.Size(353, 135);
-            this.errorLabelLog.TabIndex = 5;
+            this.errorLabelLog.TabIndex = 4;
             // 
             // passwordLabel
             // 
@@ -203,7 +203,7 @@
             this.usernameTxt.MaxLength = 200;
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(267, 20);
-            this.usernameTxt.TabIndex = 2;
+            this.usernameTxt.TabIndex = 1;
             this.usernameTxt.Tag = "";
             // 
             // passwordTxt
@@ -211,7 +211,7 @@
             this.passwordTxt.Location = new System.Drawing.Point(73, 356);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(267, 20);
-            this.passwordTxt.TabIndex = 1;
+            this.passwordTxt.TabIndex = 2;
             this.passwordTxt.UseSystemPasswordChar = true;
             // 
             // loginBtn
@@ -219,7 +219,7 @@
             this.loginBtn.Location = new System.Drawing.Point(110, 391);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(189, 45);
-            this.loginBtn.TabIndex = 0;
+            this.loginBtn.TabIndex = 3;
             this.loginBtn.Text = "Log in";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
