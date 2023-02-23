@@ -31,6 +31,7 @@ partial class ReadEmail
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadEmail));
         this.messageTxt = new System.Windows.Forms.TextBox();
         this.messageLabel = new System.Windows.Forms.Label();
         this.subjectTxt = new System.Windows.Forms.TextBox();
@@ -118,6 +119,7 @@ partial class ReadEmail
         this.Controls.Add(this.subjectLabel);
         this.Controls.Add(this.senderTxt);
         this.Controls.Add(this.senderLabel);
+        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
         this.Name = "ReadEmail";
         this.Text = "ReadEmail";
         this.ResumeLayout(false);

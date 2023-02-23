@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailWindow));
             this.emailList = new System.Windows.Forms.DataGridView();
             this.appPanel = new System.Windows.Forms.Panel();
             this.newMailBtn = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.regPasswordTxt = new System.Windows.Forms.TextBox();
             this.regUserTxt = new System.Windows.Forms.TextBox();
             this.loginPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.errorLabelLog = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
@@ -177,7 +177,6 @@
             // 
             // loginPanel
             // 
-            this.loginPanel.Controls.Add(this.label1);
             this.loginPanel.Controls.Add(this.errorLabelLog);
             this.loginPanel.Controls.Add(this.passwordLabel);
             this.loginPanel.Controls.Add(this.usernameLabel);
@@ -188,13 +187,6 @@
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(359, 610);
             this.loginPanel.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
             // 
             // errorLabelLog
             // 
@@ -259,9 +251,11 @@
             this.Controls.Add(this.registerPanel);
             this.Controls.Add(this.appPanel);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
             this.Name = "EmailWindow";
+            this.Tag = "";
+            this.Text = "E-mail Client";
             ((System.ComponentModel.ISupportInitialize)(this.emailList)).EndInit();
             this.appPanel.ResumeLayout(false);
             this.registerPanel.ResumeLayout(false);
@@ -272,8 +266,6 @@
         }
 
         private System.Windows.Forms.Button newMailBtn;
-
-        private System.Windows.Forms.Label label1;
 
         private System.Windows.Forms.Label errorLabelReg;
 

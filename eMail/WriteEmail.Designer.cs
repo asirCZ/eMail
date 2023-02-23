@@ -44,56 +44,85 @@ partial class WriteEmail
         // 
         // recipientLabel
         // 
-        resources.ApplyResources(this.recipientLabel, "recipientLabel");
+        this.recipientLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+        this.recipientLabel.Location = new System.Drawing.Point(2, 20);
         this.recipientLabel.Name = "recipientLabel";
+        this.recipientLabel.Size = new System.Drawing.Size(64, 17);
+        this.recipientLabel.TabIndex = 0;
+        this.recipientLabel.Text = "Recipient:";
+        this.recipientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
         // recipientTxt
         // 
-        resources.ApplyResources(this.recipientTxt, "recipientTxt");
+        this.recipientTxt.Location = new System.Drawing.Point(72, 20);
+        this.recipientTxt.MaxLength = 200;
         this.recipientTxt.Name = "recipientTxt";
+        this.recipientTxt.Size = new System.Drawing.Size(200, 20);
+        this.recipientTxt.TabIndex = 1;
         // 
         // subjectTxt
         // 
-        resources.ApplyResources(this.subjectTxt, "subjectTxt");
+        this.subjectTxt.Location = new System.Drawing.Point(338, 20);
+        this.subjectTxt.MaxLength = 256;
         this.subjectTxt.Name = "subjectTxt";
+        this.subjectTxt.Size = new System.Drawing.Size(380, 20);
+        this.subjectTxt.TabIndex = 3;
         // 
         // subjectLabel
         // 
-        resources.ApplyResources(this.subjectLabel, "subjectLabel");
+        this.subjectLabel.Location = new System.Drawing.Point(278, 20);
         this.subjectLabel.Name = "subjectLabel";
+        this.subjectLabel.Size = new System.Drawing.Size(54, 17);
+        this.subjectLabel.TabIndex = 2;
+        this.subjectLabel.Text = "Subject:";
+        this.subjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
         // messageLabel
         // 
-        resources.ApplyResources(this.messageLabel, "messageLabel");
+        this.messageLabel.Location = new System.Drawing.Point(12, 66);
         this.messageLabel.Name = "messageLabel";
+        this.messageLabel.Size = new System.Drawing.Size(54, 17);
+        this.messageLabel.TabIndex = 4;
+        this.messageLabel.Text = "Message:";
+        this.messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
         // messageTxt
         // 
         this.messageTxt.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
-        resources.ApplyResources(this.messageTxt, "messageTxt");
+        this.messageTxt.Location = new System.Drawing.Point(72, 63);
+        this.messageTxt.Multiline = true;
         this.messageTxt.Name = "messageTxt";
+        this.messageTxt.Size = new System.Drawing.Size(646, 316);
+        this.messageTxt.TabIndex = 5;
         // 
         // sendBtn
         // 
-        resources.ApplyResources(this.sendBtn, "sendBtn");
+        this.sendBtn.Location = new System.Drawing.Point(573, 402);
         this.sendBtn.Name = "sendBtn";
+        this.sendBtn.Size = new System.Drawing.Size(145, 47);
+        this.sendBtn.TabIndex = 6;
+        this.sendBtn.Text = "Send";
         this.sendBtn.UseVisualStyleBackColor = true;
         this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
         // 
         // cancelBtn
         // 
         this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        resources.ApplyResources(this.cancelBtn, "cancelBtn");
+        this.cancelBtn.Location = new System.Drawing.Point(72, 402);
         this.cancelBtn.Name = "cancelBtn";
+        this.cancelBtn.Size = new System.Drawing.Size(145, 47);
+        this.cancelBtn.TabIndex = 7;
+        this.cancelBtn.Text = "Cancel";
         this.cancelBtn.UseVisualStyleBackColor = true;
         this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
         // 
         // WriteEmail
         // 
-        resources.ApplyResources(this, "$this");
+        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.BackColor = System.Drawing.SystemColors.Control;
         this.CancelButton = this.cancelBtn;
+        this.ClientSize = new System.Drawing.Size(784, 461);
         this.Controls.Add(this.cancelBtn);
         this.Controls.Add(this.sendBtn);
         this.Controls.Add(this.messageTxt);
@@ -102,8 +131,10 @@ partial class WriteEmail
         this.Controls.Add(this.subjectLabel);
         this.Controls.Add(this.recipientTxt);
         this.Controls.Add(this.recipientLabel);
+        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+        this.Location = new System.Drawing.Point(15, 15);
         this.Name = "WriteEmail";
-        this.ShowIcon = false;
+        this.Text = "WriteEmail";
         this.ResumeLayout(false);
         this.PerformLayout();
     }
