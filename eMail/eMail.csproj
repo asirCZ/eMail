@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,9 +55,12 @@
     <Compile Include="emailWindow.Designer.cs">
       <DependentUpon>emailWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="IBaseClass.cs" />
+    <Compile Include="IDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserDAO.cs" />
     <EmbeddedResource Include="emailWindow.resx">
       <DependentUpon>emailWindow.cs</DependentUpon>
     </EmbeddedResource>

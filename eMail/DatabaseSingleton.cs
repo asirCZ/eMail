@@ -24,15 +24,16 @@ namespace eMail
                 {
                     _conn.Open();
                 }
-                catch (SqlException)
+                catch (SqlException sqlE)
                 {
-                    consStringBuilder = new SqlConnectionStringBuilder();
-                    consStringBuilder.InitialCatalog = ReadSetting("Database");
-                    consStringBuilder.DataSource = ReadSetting("DataSourceWin");
-                    consStringBuilder.IntegratedSecurity = true;
-                    consStringBuilder.ConnectTimeout = 1;
-                    _conn = new SqlConnection(consStringBuilder.ConnectionString);
-                    _conn.Open();
+                    Console.WriteLine(sqlE);
+                   consStringBuilder = new SqlConnectionStringBuilder();
+                   consStringBuilder.InitialCatalog = ReadSetting("Database");
+                   consStringBuilder.DataSource = ReadSetting("DataSourceWin");
+                   consStringBuilder.IntegratedSecurity = true;
+                   consStringBuilder.ConnectTimeout = 1;
+                   _conn = new SqlConnection(consStringBuilder.ConnectionString);
+                   _conn.Open();
                 }
 
             }
@@ -62,7 +63,6 @@ namespace eMail
 
         private static string ReadSetting(string key)
         {
-            //nutno doinstalovat, VS nabídne doinstalaci samo
             var appSettings = ConfigurationManager.AppSettings;
             string result = appSettings[key] ?? "Not Found";
             return result;

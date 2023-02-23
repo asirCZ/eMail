@@ -1,7 +1,7 @@
-﻿namespace Cviceni0202
+﻿namespace eMail
 {
     public interface IBaseClass
     {
-        int ID { get; set; }
+        public int Id { get; }
     }
 }

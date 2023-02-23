@@ -35,7 +35,7 @@
             this.repeatLabel = new System.Windows.Forms.Label();
             this.regRepeatTxt = new System.Windows.Forms.TextBox();
             this.regPasswordLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.registerBtn = new System.Windows.Forms.Button();
             this.regUsernameLabel = new System.Windows.Forms.Label();
             this.regPasswordTxt = new System.Windows.Forms.TextBox();
             this.regUserTxt = new System.Windows.Forms.TextBox();
@@ -55,14 +55,15 @@
             // emailList
             // 
             this.emailList.AllowUserToAddRows = false;
-            this.emailList.AllowUserToDeleteRows = false;
-            this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.emailList.Location = new System.Drawing.Point(99, 22);
+            this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.emailList.Location = new System.Drawing.Point(27, 22);
             this.emailList.Name = "emailList";
             this.emailList.ReadOnly = true;
-            this.emailList.Size = new System.Drawing.Size(328, 225);
+            this.emailList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.emailList.Size = new System.Drawing.Size(400, 251);
+            this.emailList.StandardTab = true;
             this.emailList.TabIndex = 0;
-            this.emailList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.emailList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.emailList_CellContentClick);
             // 
             // appPanel
             // 
@@ -78,7 +79,7 @@
             this.registerPanel.Controls.Add(this.repeatLabel);
             this.registerPanel.Controls.Add(this.regRepeatTxt);
             this.registerPanel.Controls.Add(this.regPasswordLabel);
-            this.registerPanel.Controls.Add(this.button1);
+            this.registerPanel.Controls.Add(this.registerBtn);
             this.registerPanel.Controls.Add(this.regUsernameLabel);
             this.registerPanel.Controls.Add(this.regPasswordTxt);
             this.registerPanel.Controls.Add(this.regUserTxt);
@@ -121,14 +122,15 @@
             this.regPasswordLabel.TabIndex = 9;
             this.regPasswordLabel.Text = "Password:";
             // 
-            // button1
+            // registerBtn
             // 
-            this.button1.Location = new System.Drawing.Point(137, 432);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(189, 45);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Register";
-            this.button1.UseVisualStyleBackColor = true;
+            this.registerBtn.Location = new System.Drawing.Point(137, 432);
+            this.registerBtn.Name = "registerBtn";
+            this.registerBtn.Size = new System.Drawing.Size(189, 45);
+            this.registerBtn.TabIndex = 5;
+            this.registerBtn.Text = "Register";
+            this.registerBtn.UseVisualStyleBackColor = true;
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // regUsernameLabel
             // 
@@ -222,7 +224,7 @@
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
-            // emailWindow
+            // EmailWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -258,7 +260,7 @@
         private System.Windows.Forms.Label repeatLabel;
         private System.Windows.Forms.TextBox regRepeatTxt;
         private System.Windows.Forms.Label regPasswordLabel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.Label regUsernameLabel;
         private System.Windows.Forms.TextBox regPasswordTxt;
         private System.Windows.Forms.TextBox regUserTxt;
