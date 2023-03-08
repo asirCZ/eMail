@@ -22,3 +22,16 @@ D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.exe
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.pdb
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.writeEmail.resources
 D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.ReadEmail.resources
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\Konscious.Security.Cryptography.Argon2.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\Konscious.Security.Cryptography.Blake2.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Buffers.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Memory.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Numerics.Vectors.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\Konscious.Security.Cryptography.Argon2.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\Konscious.Security.Cryptography.Blake2.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Buffers.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Memory.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Numerics.Vectors.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Dokumenty\workplace\rider-workplace\eMail\eMail\obj\Debug\eMail.csproj.CopyComplete

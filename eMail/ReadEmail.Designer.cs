@@ -105,12 +105,13 @@ partial class ReadEmail
         this.date.Name = "date";
         this.date.Size = new System.Drawing.Size(641, 19);
         this.date.TabIndex = 7;
-        this.date.Text = "E-mail byl odeslán ";
+        this.date.Text = "E-mail was sent on ";
         // 
         // ReadEmail
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.BackColor = System.Drawing.SystemColors.Control;
         this.ClientSize = new System.Drawing.Size(784, 461);
         this.Controls.Add(this.date);
         this.Controls.Add(this.messageTxt);
@@ -120,8 +121,8 @@ partial class ReadEmail
         this.Controls.Add(this.senderTxt);
         this.Controls.Add(this.senderLabel);
         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+        this.Location = new System.Drawing.Point(15, 15);
         this.Name = "ReadEmail";
-        this.Text = "ReadEmail";
         this.ResumeLayout(false);
         this.PerformLayout();
     }

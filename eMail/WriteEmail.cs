@@ -27,6 +27,12 @@ public partial class WriteEmail : Form
             return;
         }
 
+        if (messageTxt.Text.Length == 0)
+        {
+            MessageBox.Show(@"Cannot send an empty e-mail.");
+            return;
+        }
+
         Message m = new Message(subjectTxt.Text, messageTxt.Text, _senderId,  _uDao.GetIdFromUsername(recipientTxt.Text));
         _mDao.Save(m);
         Close();

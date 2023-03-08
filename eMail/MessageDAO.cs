@@ -68,6 +68,24 @@ public class MessageDao : IDao<Message>
             return dataTable;
         }
     }
+    
+    public object GetEmailsFromId(int id)
+    {
+        SqlConnection conn = DatabaseSingleton.GetInstance();
+        
+
+        using (SqlCommand command = new SqlCommand("GetMessagesBySenderId", conn))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(reader);
+
+            return dataTable;
+        }
+    }
     public void ReceiverDeleted(int id)
     {
         SqlConnection conn = DatabaseSingleton.GetInstance();
@@ -78,6 +96,21 @@ public class MessageDao : IDao<Message>
         {
             command.Parameters.Add(new SqlParameter("@id", id));
             command.ExecuteNonQuery();
+        }
+    }
+
+    public void SenderDeleted(int id)
+    {
+        {
+            SqlConnection conn = DatabaseSingleton.GetInstance();
+        
+
+            using (SqlCommand command =
+                   new SqlCommand("UPDATE Messages SET senderShow = senderShow & ~1 WHERE id = @id", conn))
+            {
+                command.Parameters.Add(new SqlParameter("@id", id));
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

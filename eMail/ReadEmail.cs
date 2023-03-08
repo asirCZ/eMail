@@ -6,16 +6,26 @@ public partial class ReadEmail : Form
 {
     private MessageDao _messageDao = new();
     private UserDao _userDao = new();
-    public ReadEmail(int id)
+    public ReadEmail(int id, bool inbox)
     {
         InitializeComponent();
-        LoadEmail(id);
+        LoadEmail(id, inbox);
     }
 
-    private void LoadEmail(int id)
+    private void LoadEmail(int id, bool inbox)
     {
         Message message = _messageDao.GetById(id);
-        senderTxt.Text = _userDao.GetById(message.SenderId).Username;
+        if (inbox)
+        {
+            senderLabel.Text = @"Sender:";
+            senderTxt.Text = _userDao.GetById(message.SenderId).Username;
+        }
+        else
+        {
+            senderLabel.Text = @"Recipient:";
+            senderTxt.Text = _userDao.GetById(message.ReceiverId).Username;
+        }
+
         subjectTxt.Text = message.Subject;
         messageTxt.Text = message.Message1;
         date.Text += message.SendDate + @".";
