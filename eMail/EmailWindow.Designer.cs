@@ -119,7 +119,7 @@ namespace eMail
             // 
             this.emailList.AllowDrop = true;
             this.emailList.AllowUserToAddRows = false;
-            this.emailList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.emailList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.emailList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.emailList.Location = new System.Drawing.Point(296, 52);
