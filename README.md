@@ -31,4 +31,4 @@ Contributions to this project are welcome. To get started, fork this repository 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
 ## Acknowledgements
-This project was one of many my school tasks, there is not deeper reason why I have created this. Thanks to the C# and MSSQL communities for their contributions to the development of this application.
+This project was one of many my school tasks, there is not a deeper reason why I have created this. Thanks to the C# and MSSQL communities for their contributions to the development of this application.
