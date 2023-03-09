@@ -1,7 +1,6 @@
-﻿namespace eMail
+﻿namespace eMail;
+
+public interface IBaseClass
 {
-    public interface IBaseClass
-    {
-        public int Id { get; }
-    }
+    public int Id { get; }
 }

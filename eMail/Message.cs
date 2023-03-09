@@ -4,94 +4,53 @@ namespace eMail;
 
 public class Message : IBaseClass
 {
-    private int _id;
-    private string _subject;
-    private string _message;
-    private DateTime _sendDate;
-    private int _senderId;
-    private int _receiverId;
-    private bool _senderShow;
-    private bool _receiverShow;
-
-
-    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId, bool senderShow, bool receiverShow)
+    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId,
+        bool senderShow, bool receiverShow)
     {
-        _id = id;
-        _subject = subject;
+        Id = id;
+        Subject = subject;
         Message1 = message;
-        _sendDate = sendDate;
-        _senderId = senderId;
-        _receiverId = receiverId;
-        _senderShow = senderShow;
-        _receiverShow = receiverShow;
+        SendDate = sendDate;
+        SenderId = senderId;
+        ReceiverId = receiverId;
+        SenderShow = senderShow;
+        ReceiverShow = receiverShow;
     }
 
     public Message(string subject, string message, int senderId, int receiverId)
     {
-        _subject = subject;
+        Subject = subject;
         Message1 = message;
-        _senderId = senderId;
-        _receiverId = receiverId;
-        _senderShow = true;
-        _receiverShow = true;
+        SenderId = senderId;
+        ReceiverId = receiverId;
+        SenderShow = true;
+        ReceiverShow = true;
     }
 
     public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId)
     {
-        _id = id;
-        _subject = subject;
-        _message = message;
-        _sendDate = sendDate;
-        _senderId = senderId;
-        _receiverId = receiverId;
+        Id = id;
+        Subject = subject;
+        Message1 = message;
+        SendDate = sendDate;
+        SenderId = senderId;
+        ReceiverId = receiverId;
     }
 
-    public string Subject
-    {
-        get => _subject;
-        set => _subject = value;
-    }
+    public string Subject { get; set; }
 
-    public DateTime SendDate
-    {
-        get => _sendDate;
-        set => _sendDate = value;
-    }
+    public DateTime SendDate { get; set; }
 
-    public int SenderId
-    {
-        get => _senderId;
-        set => _senderId = value;
-    }
+    public int SenderId { get; set; }
 
-    public int ReceiverId
-    {
-        get => _receiverId;
-        set => _receiverId = value;
-    }
+    public int ReceiverId { get; set; }
 
-    public bool SenderShow
-    {
-        get => _senderShow;
-        set => _senderShow = value;
-    }
+    public bool SenderShow { get; set; }
 
-    public bool ReceiverShow
-    {
-        get => _receiverShow;
-        set => _receiverShow = value;
-    }
+    public bool ReceiverShow { get; set; }
+
+    public string Message1 { get; set; }
 
 
-    public int Id
-    {
-        get => _id;
-        set => _id = value;
-    }
-
-    public string Message1
-    {
-        get => _message;
-        set => _message = value;
-    }
+    public int Id { get; set; }
 }

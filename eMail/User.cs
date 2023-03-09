@@ -1,53 +1,32 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿namespace eMail;
 
-namespace eMail
+public class User : IBaseClass
 {
-    public class User : IBaseClass
+    private bool _encrypted;
+
+    public User(string username, string password)
     {
-        private int _id;
-        private string _username;
-        private string _password;
-        private bool _encrypted = false;
+        Username = username;
+        Password = password;
+    }
 
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+    public User(int id, string username, string password, bool encrypted)
+    {
+        Id = id;
+        Username = username;
+        Password = password;
+        _encrypted = encrypted;
+    }
 
-        public string Username
-        {
-            get => _username;
-            set => _username = value;
-        }
+    public string Username { get; set; }
 
-        public string Password
-        {
-            get => _password;
-            set => _password = value;
-        }
+    public string Password { get; set; }
 
-        public User(string username, string password)
-        {
-            Username = username;
-            Password = password;
-        }
+    public int Id { get; set; }
 
-        public User(int id, string username, string password, bool encrypted)
-        {
-            _id = id;
-            _username = username;
-            _password = password;
-            _encrypted = encrypted;
-        }
-
-        public void EncryptPassword()
-        {
-            _password = PasswordEncryption.EncryptPassword(_password);
-            _encrypted = true;
-        }
-
-
+    public void EncryptPassword()
+    {
+        Password = PasswordEncryption.EncryptPassword(Password);
+        _encrypted = true;
     }
 }

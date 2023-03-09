@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace eMail;
 
 public partial class EmailWindow : Form
 {
+    private readonly MessageDao _mDao = new();
+    private readonly UserDao _uDao = new();
+    private bool _inbox = true;
     private User _user;
-    private UserDao _uDao = new();
-    private MessageDao _mDao = new();
-    private bool inbox = true;
 
     public EmailWindow()
     {
@@ -53,19 +51,13 @@ public partial class EmailWindow : Form
     private void LoadReceivedEmails()
     {
         emailList.DataSource = _mDao.GetEmailsForId(_user.Id);
-        if (emailList.Columns.Contains("MessageID"))
-        {
-            emailList.Columns["MessageID"]!.Visible = false;
-        }
+        if (emailList.Columns.Contains("MessageID")) emailList.Columns["MessageID"]!.Visible = false;
     }
 
     private void LoadSentEmails()
     {
         emailList.DataSource = _mDao.GetEmailsFromId(_user.Id);
-        if (emailList.Columns.Contains("MessageID"))
-        {
-            emailList.Columns["MessageID"]!.Visible = false;
-        }
+        if (emailList.Columns.Contains("MessageID")) emailList.Columns["MessageID"]!.Visible = false;
     }
 
     private void registerBtn_Click(object sender, EventArgs e)
@@ -117,43 +109,41 @@ public partial class EmailWindow : Form
 
     private void emailList_DeletingRow(object sender, DataGridViewRowCancelEventArgs e)
     {
-        if (inbox)
-        {
-            _mDao.ReceiverDeleted(Int32.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
-        }
+        if (_inbox)
+            _mDao.ReceiverDeleted(int.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
         else
-        {
-            _mDao.SenderDeleted(Int32.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
-        }
+            _mDao.SenderDeleted(int.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
     }
+
     private void emailList_DoubleClick(object sender, DataGridViewCellMouseEventArgs e)
     {
-        ReadEmail re = new ReadEmail(Int32.Parse(emailList.Rows[e.RowIndex].Cells["MessageID"].Value.ToString()), inbox);
+        var re = new ReadEmail(int.Parse(emailList.Rows[e.RowIndex].Cells["MessageID"].Value.ToString()),
+            _inbox);
         re.Visible = true;
     }
 
     private void newMailBtn_Click(object sender, EventArgs e)
     {
-        WriteEmail we = new WriteEmail(_user.Id);
+        var we = new WriteEmail(_user.Id);
         we.Visible = true;
     }
 
     private void toggleEmailsBtn_Click(object sender, EventArgs e)
     {
-        if(inbox){
+        if (_inbox)
+        {
             toggleEmailsBtn.Text = @"Inbox";
             headerLabel.Text = @"Sent:";
             LoadSentEmails();
-            inbox = false;
+            _inbox = false;
         }
         else
         {
             toggleEmailsBtn.Text = @"Sent";
             headerLabel.Text = @"Inbox:";
             LoadReceivedEmails();
-            inbox = true;
+            _inbox = true;
         }
-        
     }
 
     private void registerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -164,7 +154,6 @@ public partial class EmailWindow : Form
         usernameTxt.Text = "";
         passwordTxt.Text = "";
         errorLabelLog.Text = "";
-        
     }
 
     private void logoutBtn_Click(object sender, EventArgs e)

@@ -4,8 +4,9 @@ namespace eMail;
 
 public partial class ReadEmail : Form
 {
-    private MessageDao _messageDao = new();
-    private UserDao _userDao = new();
+    private readonly MessageDao _messageDao = new();
+    private readonly UserDao _userDao = new();
+
     public ReadEmail(int id, bool inbox)
     {
         InitializeComponent();
@@ -14,7 +15,7 @@ public partial class ReadEmail : Form
 
     private void LoadEmail(int id, bool inbox)
     {
-        Message message = _messageDao.GetById(id);
+        var message = _messageDao.GetById(id);
         if (inbox)
         {
             senderLabel.Text = @"Sender:";

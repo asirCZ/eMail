@@ -10,15 +10,20 @@ public class MessageDao : IDao<Message>
     public Message GetById(int id)
     {
         Message m;
-        SqlConnection conn = DatabaseSingleton.GetInstance();
-        using (SqlCommand command = new SqlCommand("SELECT subject, message, sendDate, senderId, receiverId FROM Messages M WHERE M.id = @id AND receiverShow = 1", conn))
+        var conn = DatabaseSingleton.GetInstance();
+        using (var command =
+               new SqlCommand(
+                   "SELECT subject, message, sendDate, senderId, receiverId FROM Messages M WHERE M.id = @id AND receiverShow = 1",
+                   conn))
         {
             command.Parameters.Add(new SqlParameter("@id", id));
-            using (SqlDataReader reader = command.ExecuteReader())
+            using (var reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    m = new Message(id, reader[0].ToString(), reader[1].ToString(), DateTime.Parse(reader[2].ToString()), Int32.Parse(reader[3].ToString()), Int32.Parse(reader[4].ToString()));
+                    m = new Message(id, reader[0].ToString(), reader[1].ToString(),
+                        DateTime.Parse(reader[2].ToString()), int.Parse(reader[3].ToString()),
+                        int.Parse(reader[4].ToString()));
                     return m;
                 }
 
@@ -29,14 +34,14 @@ public class MessageDao : IDao<Message>
 
     public IEnumerable<Message> GetAll()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void Save(Message element)
     {
-        SqlConnection conn = DatabaseSingleton.GetInstance();
+        var conn = DatabaseSingleton.GetInstance();
 
-        using (SqlCommand command = new SqlCommand("SendEmail", conn))
+        using (var command = new SqlCommand("SendEmail", conn))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@subject", element.Subject);
@@ -51,47 +56,49 @@ public class MessageDao : IDao<Message>
     {
         throw new NotImplementedException();
     }
+
     public DataTable GetEmailsForId(int id)
     {
-        SqlConnection conn = DatabaseSingleton.GetInstance();
-        
+        var conn = DatabaseSingleton.GetInstance();
 
-        using (SqlCommand command = new SqlCommand("GetMessagesByReceiverId", conn))
+
+        using (var command = new SqlCommand("GetMessagesByReceiverId", conn))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
 
-            SqlDataReader reader = command.ExecuteReader();
-            DataTable dataTable = new DataTable();
+            var reader = command.ExecuteReader();
+            var dataTable = new DataTable();
             dataTable.Load(reader);
 
             return dataTable;
         }
     }
-    
+
     public object GetEmailsFromId(int id)
     {
-        SqlConnection conn = DatabaseSingleton.GetInstance();
-        
+        var conn = DatabaseSingleton.GetInstance();
 
-        using (SqlCommand command = new SqlCommand("GetMessagesBySenderId", conn))
+
+        using (var command = new SqlCommand("GetMessagesBySenderId", conn))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
 
-            SqlDataReader reader = command.ExecuteReader();
-            DataTable dataTable = new DataTable();
+            var reader = command.ExecuteReader();
+            var dataTable = new DataTable();
             dataTable.Load(reader);
 
             return dataTable;
         }
     }
+
     public void ReceiverDeleted(int id)
     {
-        SqlConnection conn = DatabaseSingleton.GetInstance();
-        
+        var conn = DatabaseSingleton.GetInstance();
 
-        using (SqlCommand command =
+
+        using (var command =
                new SqlCommand("UPDATE Messages SET receiverShow = receiverShow & ~1 WHERE id = @id", conn))
         {
             command.Parameters.Add(new SqlParameter("@id", id));
@@ -102,10 +109,10 @@ public class MessageDao : IDao<Message>
     public void SenderDeleted(int id)
     {
         {
-            SqlConnection conn = DatabaseSingleton.GetInstance();
-        
+            var conn = DatabaseSingleton.GetInstance();
 
-            using (SqlCommand command =
+
+            using (var command =
                    new SqlCommand("UPDATE Messages SET senderShow = senderShow & ~1 WHERE id = @id", conn))
             {
                 command.Parameters.Add(new SqlParameter("@id", id));
