@@ -17,7 +17,7 @@ This Email Client application is built using C# and integrates with a local MSSQ
 
 ## Installation
 
-1. Clone this repository to your local machine: ```git clone https://github.com/your-username/email-client.git```
+1. Clone this repository to your local machine: ```git clone https://github.com/asirCZ/eMail/```
 2. Open SQL Server Management Studio and execute the script databaseScript.sql to create the database for the application.
 3. Open the solution file EmailClient.sln in Visual Studio (Rider etc.).
 4. Build and run the application in Visual Studio (Rider etc.).
