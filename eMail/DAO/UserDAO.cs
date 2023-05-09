@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace eMail;
@@ -98,6 +99,21 @@ public class UserDao : IDao<User>
                 if (reader.Read()) return (int)reader[0];
 
                 return 0;
+            }
+        }
+    }
+
+    public string GetNameById(int id)
+    {
+        var conn = DatabaseSingleton.GetInstance();
+        using (var command = new SqlCommand("GetNameById", conn))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+
+            using (var reader = command.ExecuteReader())
+            {
+                return !reader.Read() ? null : reader["username"].ToString();
             }
         }
     }

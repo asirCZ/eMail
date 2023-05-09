@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -40,65 +40,62 @@
         <Reference Include="Konscious.Security.Cryptography.Blake2, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\Konscious.Security.Cryptography.Blake2.1.1.0\lib\net46\Konscious.Security.Cryptography.Blake2.dll</HintPath>
         </Reference>
-        <Reference Include="mscorlib"/>
-        <Reference Include="System"/>
+        <Reference Include="mscorlib" />
+        <Reference Include="System" />
         <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
         </Reference>
-        <Reference Include="System.Configuration"/>
-        <Reference Include="System.Core"/>
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.Core" />
         <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
         </Reference>
-        <Reference Include="System.Numerics"/>
+        <Reference Include="System.Numerics" />
         <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
         </Reference>
         <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
             <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
         </Reference>
-        <Reference Include="System.Xml.Linq"/>
-        <Reference Include="System.Data.DataSetExtensions"/>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Deployment"/>
-        <Reference Include="System.Drawing"/>
-        <Reference Include="System.Net.Http"/>
-        <Reference Include="System.Windows.Forms"/>
-        <Reference Include="System.Xml"/>
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Deployment" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DatabaseSingleton.cs"/>
-        <Compile Include="EmailWindow.cs">
-            <SubType>Form</SubType>
+        <Compile Include="DAO\IDAO.cs" />
+        <Compile Include="DAO\MessageDAO.cs" />
+        <Compile Include="DAO\UserDAO.cs" />
+        <Compile Include="DatabaseSingleton.cs" />
+        <Compile Include="IBaseClass.cs" />
+        <Compile Include="Message.cs" />
+        <Compile Include="PasswordEncryption.cs" />
+        <Compile Include="Program.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="User.cs" />
+        <Compile Include="Window Forms\EmailWindow.cs">
+          <SubType>Form</SubType>
         </Compile>
-        <Compile Include="EmailWindow.Designer.cs">
-            <DependentUpon>EmailWindow.cs</DependentUpon>
+        <Compile Include="Window Forms\EmailWindow.Designer.cs">
+          <DependentUpon>EmailWindow.cs</DependentUpon>
         </Compile>
-        <Compile Include="IBaseClass.cs"/>
-        <Compile Include="IDAO.cs"/>
-        <Compile Include="Message.cs"/>
-        <Compile Include="MessageDAO.cs"/>
-        <Compile Include="PasswordEncryption.cs"/>
-        <Compile Include="Program.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="ReadEmail.cs">
-            <SubType>Form</SubType>
+        <Compile Include="Window Forms\ReadEmail.cs">
+          <SubType>Form</SubType>
         </Compile>
-        <Compile Include="ReadEmail.Designer.cs">
-            <DependentUpon>ReadEmail.cs</DependentUpon>
+        <Compile Include="Window Forms\ReadEmail.Designer.cs">
+          <DependentUpon>ReadEmail.cs</DependentUpon>
         </Compile>
-        <Compile Include="User.cs"/>
-        <Compile Include="UserDAO.cs"/>
-        <Compile Include="WriteEmail.cs">
-            <SubType>Form</SubType>
+        <Compile Include="Window Forms\WriteEmail.cs">
+          <SubType>Form</SubType>
         </Compile>
-        <Compile Include="WriteEmail.Designer.cs">
-            <DependentUpon>WriteEmail.cs</DependentUpon>
+        <Compile Include="Window Forms\WriteEmail.Designer.cs">
+          <DependentUpon>WriteEmail.cs</DependentUpon>
         </Compile>
-        <EmbeddedResource Include="EmailWindow.resx">
-            <DependentUpon>EmailWindow.cs</DependentUpon>
-        </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,13 +105,16 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <EmbeddedResource Include="ReadEmail.resx">
-            <DependentUpon>ReadEmail.cs</DependentUpon>
+        <EmbeddedResource Include="Window Forms\EmailWindow.resx">
+          <DependentUpon>EmailWindow.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="WriteEmail.resx">
-            <DependentUpon>WriteEmail.cs</DependentUpon>
+        <EmbeddedResource Include="Window Forms\ReadEmail.resx">
+          <DependentUpon>ReadEmail.cs</DependentUpon>
         </EmbeddedResource>
-        <None Include="packages.config"/>
+        <EmbeddedResource Include="Window Forms\WriteEmail.resx">
+          <DependentUpon>WriteEmail.cs</DependentUpon>
+        </EmbeddedResource>
+        <None Include="packages.config" />
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -126,10 +126,10 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="databaseScript.sql"/>
+      <Content Include="Database\databaseScript.sql" />
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

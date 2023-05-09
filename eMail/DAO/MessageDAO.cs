@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace eMail;
 
@@ -11,23 +12,19 @@ public class MessageDao : IDao<Message>
     {
         Message m;
         var conn = DatabaseSingleton.GetInstance();
-        using (var command =
-               new SqlCommand(
-                   "SELECT subject, message, sendDate, senderId, receiverId FROM Messages M WHERE M.id = @id AND receiverShow = 1",
-                   conn))
+        using (var command = new SqlCommand("GetMessageById", conn))
         {
-            command.Parameters.Add(new SqlParameter("@id", id));
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+
             using (var reader = command.ExecuteReader())
             {
-                if (reader.Read())
-                {
-                    m = new Message(id, reader[0].ToString(), reader[1].ToString(),
-                        DateTime.Parse(reader[2].ToString()), int.Parse(reader[3].ToString()),
-                        int.Parse(reader[4].ToString()));
-                    return m;
-                }
+                if (!reader.Read()) return null;
+                m = new Message(id, reader[0].ToString(), reader[1].ToString(),
+                    DateTime.Parse(reader[2].ToString()), int.Parse(reader[3].ToString()),
+                    GetRecipientsByMessageId(id));
+                return m;
 
-                return null;
             }
         }
     }
@@ -39,6 +36,7 @@ public class MessageDao : IDao<Message>
 
     public void Save(Message element)
     {
+        int messageId;
         var conn = DatabaseSingleton.GetInstance();
 
         using (var command = new SqlCommand("SendEmail", conn))
@@ -46,10 +44,22 @@ public class MessageDao : IDao<Message>
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@subject", element.Subject);
             command.Parameters.AddWithValue("@message", element.Message1);
-            command.Parameters.AddWithValue("@senderId", element.SenderId.ToString());
-            command.Parameters.AddWithValue("@recipientId", element.ReceiverId.ToString());
-            command.ExecuteNonQuery();
+            command.Parameters.AddWithValue("@sender_id", element.SenderId);
+            command.Parameters.AddWithValue("@sender_show", element.SenderShow);
+            messageId = (int)command.ExecuteScalar();
         }
+        foreach (KeyValuePair<int,bool> recipient in element.Recipients)
+        {
+            using (var command = new SqlCommand("AssignRecipient", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@recipient_id", recipient.Key);
+                command.Parameters.AddWithValue("@message_id", messageId);
+                command.Parameters.AddWithValue("@recipient_show", recipient.Value);
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 
     public void Delete(Message element)
@@ -62,7 +72,7 @@ public class MessageDao : IDao<Message>
         var conn = DatabaseSingleton.GetInstance();
 
 
-        using (var command = new SqlCommand("GetMessagesByReceiverId", conn))
+        using (var command = new SqlCommand("GetMessagesByRecipientId", conn))
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
@@ -117,6 +127,26 @@ public class MessageDao : IDao<Message>
             {
                 command.Parameters.Add(new SqlParameter("@id", id));
                 command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public IEnumerable<int> GetRecipientsByMessageId(int id)
+    {
+        var conn = DatabaseSingleton.GetInstance();
+        using (var command = new SqlCommand("GetRecipientsByMessageId", conn))
+        {
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", id);
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int recipientId = Convert.ToInt32(reader["recipient_id"]);
+
+                    yield return recipientId;
+                }
             }
         }
     }

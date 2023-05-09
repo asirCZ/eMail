@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace eMail;
 
@@ -20,15 +21,28 @@ public partial class ReadEmail : Form
         {
             senderLabel.Text = @"Sender:";
             senderTxt.Text = _userDao.GetById(message.SenderId).Username;
+            replyBtn.Visible = true;
         }
         else
         {
-            senderLabel.Text = @"Recipient:";
-            senderTxt.Text = _userDao.GetById(message.ReceiverId).Username;
+            replyBtn.Visible = false;
         }
 
         subjectTxt.Text = message.Subject;
         messageTxt.Text = message.Message1;
         date.Text += message.SendDate + @".";
+    }
+
+    private void replyBtn_Click(object sender, EventArgs e)
+    {
+        //TODO
+    }
+    private void LoadRecipientList(Message m)
+    {
+        listOfRecipients.Items.Clear();
+        foreach (var recipient in m.Recipients)
+        {
+            listOfRecipients.Items.Add(_userDao.GetNameById(recipient.Key));
+        }
     }
 }
