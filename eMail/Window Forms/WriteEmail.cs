@@ -11,6 +11,7 @@ public partial class WriteEmail : Form
     private readonly UserDao _uDao = new();
     private readonly int _senderId;
     private LinkedList<string> _recipients = new();
+    private List<int> recipientsIds = new List<int>();
 
     public WriteEmail(int sender)
     {
@@ -25,20 +26,13 @@ public partial class WriteEmail : Form
 
     private void sendBtn_Click(object sender, EventArgs e)
     {
-        var recipientsIds = new int[_recipients.Count];
-        foreach (var recipient in _recipients.Where(recipient => !_uDao.UserExists(recipient)))
-        {
-            MessageBox.Show(@"Account """ + recipient + @""" doesn't exist.");
-            return;
-        }
-
         if (messageTxt.Text.Length == 0)
         {
             MessageBox.Show(@"Cannot send an empty e-mail.");
             return;
         }
 
-        var m = new Message(subjectTxt.Text, messageTxt.Text, _senderId, recipientsIds);
+        var m = new Message(subjectTxt.Text, messageTxt.Text, _senderId, GetRecipientsIds());
         _mDao.Save(m);
         Close();
         MessageBox.Show(@"E-mail has been successfully sent.");
@@ -46,13 +40,15 @@ public partial class WriteEmail : Form
 
     private void addRecipient_Click(object sender, EventArgs e)
     {
-        if (!_uDao.UserExists(recipientTxt.Text))
+        int userId = _uDao.UserExists(recipientTxt.Text);
+        if (userId == 0)
         {
             MessageBox.Show(@"Cannot find such account in the database.");
             return;
         }
 
         _recipients.AddLast(recipientTxt.Text);
+        recipientsIds.Add(userId);
         ReloadRecipientList();
 
     }
@@ -64,5 +60,10 @@ public partial class WriteEmail : Form
         {
             listOfRecipients.Items.Add(recipient);
         }
+    }
+
+    private IEnumerable<int> GetRecipientsIds()
+    {
+        return recipientsIds;
     }
 }

@@ -18,14 +18,15 @@ public class User : IBaseClass
         _encrypted = encrypted;
     }
 
-    public string Username { get; set; }
+    public string Username { get; }
 
-    public string Password { get; set; }
+    public string Password { get; private set; }
 
     public int Id { get; set; }
 
     public void EncryptPassword()
     {
+        if (_encrypted) return;
         Password = PasswordEncryption.EncryptPassword(Password);
         _encrypted = true;
     }

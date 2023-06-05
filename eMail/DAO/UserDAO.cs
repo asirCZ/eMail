@@ -51,20 +51,26 @@ public class UserDao : IDao<User>
         throw new NotImplementedException();
     }
 
-    public bool UserExists(string username)
+    public int UserExists(string username)
     {
         var conn = DatabaseSingleton.GetInstance();
+        int id = 0;
 
-        using (var command = new SqlCommand("SELECT Username FROM Accounts WHERE Username = @name", conn))
+        using (var command = new SqlCommand("GetIdByName", conn))
         {
-            command.Parameters.Add(new SqlParameter("@name", username));
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@username", username);
+
             using (var reader = command.ExecuteReader())
             {
-                if (reader.Read()) return true;
-
-                return false;
+                if (reader.Read())
+                {
+                    id = Convert.ToInt32(reader["id"]);
+                }
             }
         }
+
+        return id;
     }
 
     public bool PasswordMatches(User u)

@@ -11,6 +11,7 @@ public class MessageDao : IDao<Message>
     public Message GetById(int id)
     {
         Message m;
+        var recipientNames = GetRecipientsByMessageId(id);
         var conn = DatabaseSingleton.GetInstance();
         using (var command = new SqlCommand("GetMessageById", conn))
         {
@@ -22,7 +23,7 @@ public class MessageDao : IDao<Message>
                 if (!reader.Read()) return null;
                 m = new Message(id, reader[0].ToString(), reader[1].ToString(),
                     DateTime.Parse(reader[2].ToString()), int.Parse(reader[3].ToString()),
-                    GetRecipientsByMessageId(id));
+                    recipientNames);
                 return m;
 
             }
@@ -48,8 +49,12 @@ public class MessageDao : IDao<Message>
             command.Parameters.AddWithValue("@sender_show", element.SenderShow);
             messageId = (int)command.ExecuteScalar();
         }
+
+        Console.WriteLine(messageId);
         foreach (KeyValuePair<int,bool> recipient in element.Recipients)
         {
+            Console.WriteLine(recipient.Key);
+            Console.WriteLine(recipient.Value);
             using (var command = new SqlCommand("AssignRecipient", conn))
             {
                 command.CommandType = CommandType.StoredProcedure;
@@ -76,11 +81,11 @@ public class MessageDao : IDao<Message>
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
-
-            var reader = command.ExecuteReader();
             var dataTable = new DataTable();
-            dataTable.Load(reader);
-
+            using (var reader = command.ExecuteReader())
+            {
+                dataTable.Load(reader);
+            }
             return dataTable;
         }
     }
@@ -94,45 +99,43 @@ public class MessageDao : IDao<Message>
         {
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@id", id);
-
-            var reader = command.ExecuteReader();
             var dataTable = new DataTable();
-            dataTable.Load(reader);
-
+            using (var reader = command.ExecuteReader())
+            {
+                dataTable.Load(reader);
+            }
             return dataTable;
         }
     }
 
-    public void ReceiverDeleted(int id)
+    public void RecipientDeleted(int recipientId, int messageId)
     {
         var conn = DatabaseSingleton.GetInstance();
-
-
-        using (var command =
-               new SqlCommand("UPDATE Messages SET receiverShow = receiverShow & ~1 WHERE id = @id", conn))
+        using (var command = new SqlCommand("DeleteRecipient", conn))
         {
-            command.Parameters.Add(new SqlParameter("@id", id));
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id_msg", messageId);
+            command.Parameters.AddWithValue("@id_recipient", recipientId);
             command.ExecuteNonQuery();
         }
     }
 
-    public void SenderDeleted(int id)
+    public void SenderDeleted(int messageId)
     {
         {
             var conn = DatabaseSingleton.GetInstance();
-
-
-            using (var command =
-                   new SqlCommand("UPDATE Messages SET senderShow = senderShow & ~1 WHERE id = @id", conn))
+            using (var command = new SqlCommand("DeleteSender", conn))
             {
-                command.Parameters.Add(new SqlParameter("@id", id));
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id_msg", messageId);
                 command.ExecuteNonQuery();
             }
         }
     }
 
-    public IEnumerable<int> GetRecipientsByMessageId(int id)
+    private List<int> GetRecipientsByMessageId(int id)
     {
+        List<int> list = new List<int>();
         var conn = DatabaseSingleton.GetInstance();
         using (var command = new SqlCommand("GetRecipientsByMessageId", conn))
         {
@@ -144,10 +147,12 @@ public class MessageDao : IDao<Message>
                 while (reader.Read())
                 {
                     int recipientId = Convert.ToInt32(reader["recipient_id"]);
-
-                    yield return recipientId;
+                    list.Add(recipientId);
                 }
             }
         }
+
+        return list;
     }
+
 }

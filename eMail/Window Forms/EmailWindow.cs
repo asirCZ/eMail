@@ -25,21 +25,21 @@ public partial class EmailWindow : Form
         errorLabelLog.Text = "";
         errorLabelLog.ForeColor = Color.Red;
         _user = new User(usernameTxt.Text, passwordTxt.Text);
-        if (!_uDao.UserExists(_user.Username))
+        int id = _uDao.UserExists(_user.Username);
+        if (id == 0)
         {
             errorLabelLog.Text =
                 @"Error! There appears to be no account associated with the provided username. Please verify that the username was entered correctly and that an account exists for it in our system.";
             return;
         }
-
-        if (!_uDao.PasswordMatches(_user))
+        if (_user.Password.Length == 0 || !_uDao.PasswordMatches(_user))
         {
             errorLabelLog.Text =
                 @"Error! The entered password does not match the password on file. Please double-check that the correct password has been entered.";
             return;
         }
 
-        _user.Id = _uDao.GetIdFromUsername(_user.Username);
+        _user.Id = id;
         LoadReceivedEmails();
         loginPanel.Visible = false;
         appPanel.Visible = true;
@@ -65,6 +65,12 @@ public partial class EmailWindow : Form
         _user = null;
         errorLabelReg.Text = "";
         errorLabelReg.ForeColor = Color.Red;
+        if (regUserTxt.Text.Length < 3)
+        {
+            errorLabelReg.Text =
+                @"Error! Username must contain at least 3 characters.";
+            return;
+        }
         if (regPasswordTxt.Text != regRepeatTxt.Text)
         {
             errorLabelReg.Text =
@@ -80,7 +86,7 @@ public partial class EmailWindow : Form
         }
 
         _user = new User(regUserTxt.Text, regPasswordTxt.Text);
-        if (_uDao.UserExists(_user.Username))
+        if (_uDao.UserExists(_user.Username) != 0 )
         {
             errorLabelReg.Text =
                 @"Error! The username you entered is already in use. Please choose a different username and try again.";
@@ -89,7 +95,7 @@ public partial class EmailWindow : Form
 
         _user.EncryptPassword();
         _uDao.Save(_user);
-        if (!_uDao.UserExists(_user.Username))
+        if (_uDao.UserExists(_user.Username) == 0)
         {
             errorLabelReg.Text = @"Error! Unable to register!";
             return;
@@ -110,16 +116,20 @@ public partial class EmailWindow : Form
     private void emailList_DeletingRow(object sender, DataGridViewRowCancelEventArgs e)
     {
         if (_inbox)
-            _mDao.ReceiverDeleted(int.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
+            _mDao.RecipientDeleted(_user.Id,int.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
         else
             _mDao.SenderDeleted(int.Parse(emailList.Rows[e.Row.Index].Cells["MessageID"].Value.ToString()));
     }
 
     private void emailList_DoubleClick(object sender, DataGridViewCellMouseEventArgs e)
     {
-        var re = new ReadEmail(int.Parse(emailList.Rows[e.RowIndex].Cells["MessageID"].Value.ToString()),
-            _inbox);
-        re.Visible = true;
+        try
+        {
+            var re = new ReadEmail(int.Parse(emailList.Rows[e.RowIndex].Cells["MessageID"].Value.ToString()),
+                _inbox);
+            re.Visible = true;
+        }
+        catch (ArgumentOutOfRangeException){}
     }
 
     private void newMailBtn_Click(object sender, EventArgs e)

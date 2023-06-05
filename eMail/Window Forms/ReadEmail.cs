@@ -19,15 +19,14 @@ public partial class ReadEmail : Form
         var message = _messageDao.GetById(id);
         if (inbox)
         {
-            senderLabel.Text = @"Sender:";
-            senderTxt.Text = _userDao.GetById(message.SenderId).Username;
             replyBtn.Visible = true;
         }
         else
         {
             replyBtn.Visible = false;
         }
-
+        LoadRecipientList(message);
+        senderTxt.Text = _userDao.GetNameById(message.SenderId);
         subjectTxt.Text = message.Subject;
         messageTxt.Text = message.Message1;
         date.Text += message.SendDate + @".";
@@ -45,4 +44,5 @@ public partial class ReadEmail : Form
             listOfRecipients.Items.Add(_userDao.GetNameById(recipient.Key));
         }
     }
+    
 }
