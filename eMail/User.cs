@@ -1,5 +1,8 @@
 ﻿namespace eMail;
 
+/// <summary>
+///     Represents a user with a username and password.
+/// </summary>
 public class User : IBaseClass
 {
     private bool _encrypted;
@@ -24,6 +27,9 @@ public class User : IBaseClass
 
     public int Id { get; set; }
 
+    /// <summary>
+    ///     Encrypts the user's password if it is not already encrypted.
+    /// </summary>
     public void EncryptPassword()
     {
         if (_encrypted) return;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace eMail;
+namespace eMail.Window_Forms;
 
 partial class ReadEmail
 {

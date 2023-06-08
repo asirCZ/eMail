@@ -1,69 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using eMail.DAO;
 
-namespace eMail;
-
-public partial class WriteEmail : Form
+namespace eMail.Window_Forms
 {
-    private readonly MessageDao _mDao = new();
-    private readonly UserDao _uDao = new();
-    private readonly int _senderId;
-    private LinkedList<string> _recipients = new();
-    private List<int> recipientsIds = new List<int>();
-
-    public WriteEmail(int sender)
+    /// <summary>
+    /// Represents a form for writing an email.
+    /// </summary>
+    public partial class WriteEmail : Form
     {
-        _senderId = sender;
-        InitializeComponent();
-    }
+        private readonly MessageDao _mDao = new();
+        private readonly LinkedList<string> _recipients = new();
+        private readonly List<int> _recipientsIds = new();
+        private readonly int _senderId;
+        private readonly UserDao _uDao = new();
 
-    private void cancelBtn_Click(object sender, EventArgs e)
-    {
-        Close();
-    }
-
-    private void sendBtn_Click(object sender, EventArgs e)
-    {
-        if (messageTxt.Text.Length == 0)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WriteEmail"/> class.
+        /// </summary>
+        /// <param name="sender">The ID of the email sender.</param>
+        /// <param name="recipient">The recipient of the email (optional).</param>
+        public WriteEmail(int sender, string recipient = null)
         {
-            MessageBox.Show(@"Cannot send an empty e-mail.");
-            return;
+            _senderId = sender;
+            InitializeComponent();
+            if (recipient == null) return;
+            AddRecipient(recipient);
         }
 
-        var m = new Message(subjectTxt.Text, messageTxt.Text, _senderId, GetRecipientsIds());
-        _mDao.Save(m);
-        Close();
-        MessageBox.Show(@"E-mail has been successfully sent.");
-    }
-
-    private void addRecipient_Click(object sender, EventArgs e)
-    {
-        int userId = _uDao.UserExists(recipientTxt.Text);
-        if (userId == 0)
+        private void cancelBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"Cannot find such account in the database.");
-            return;
+            Close();
         }
 
-        _recipients.AddLast(recipientTxt.Text);
-        recipientsIds.Add(userId);
-        ReloadRecipientList();
-
-    }
-
-    private void ReloadRecipientList()
-    {
-        listOfRecipients.Items.Clear();
-        foreach (var recipient in _recipients)
+        private void sendBtn_Click(object sender, EventArgs e)
         {
-            listOfRecipients.Items.Add(recipient);
-        }
-    }
+            if (messageTxt.Text.Length == 0)
+            {
+                MessageBox.Show(@"Cannot send an empty e-mail.");
+                return;
+            }
 
-    private IEnumerable<int> GetRecipientsIds()
-    {
-        return recipientsIds;
+            var m = new Message(subjectTxt.Text, messageTxt.Text, _senderId, GetRecipientsIds());
+            _mDao.Save(m);
+            Close();
+            MessageBox.Show(@"E-mail has been successfully sent.");
+        }
+
+        private void addRecipient_Click(object sender, EventArgs e)
+        {
+            AddRecipient();
+        }
+
+        private void AddRecipient(string username = null)
+        {
+            var userId = _uDao.GetUserId(username ?? recipientTxt.Text);
+
+            if (userId == 0)
+            {
+                MessageBox.Show(@"Cannot find such account in the database.");
+                return;
+            }
+
+            _recipients.AddLast(username ?? recipientTxt.Text);
+            _recipientsIds.Add(userId);
+            ReloadRecipientList();
+            recipientTxt.Text = "";
+        }
+
+        private void ReloadRecipientList()
+        {
+            listOfRecipients.Items.Clear();
+            foreach (var recipient in _recipients)
+            {
+                listOfRecipients.Items.Add(recipient);
+            }
+        }
+
+        private IEnumerable<int> GetRecipientsIds()
+        {
+            return _recipientsIds;
+        }
     }
 }
