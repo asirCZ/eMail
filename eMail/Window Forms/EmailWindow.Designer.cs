@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace eMail
+﻿namespace eMail.Window_Forms
 {
     partial class EmailWindow
     {
@@ -31,6 +29,8 @@ namespace eMail
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailWindow));
             this.appPanel = new System.Windows.Forms.Panel();
+            this.recentLoginsLabel = new System.Windows.Forms.Label();
+            this.recentLoginsList = new System.Windows.Forms.DataGridView();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.headerLabel = new System.Windows.Forms.Label();
             this.toggleEmailsBtn = new System.Windows.Forms.Button();
@@ -56,7 +56,9 @@ namespace eMail
             this.errorLabelReg = new System.Windows.Forms.Label();
             this.regHeader = new System.Windows.Forms.Label();
             this.registerPanel = new System.Windows.Forms.Panel();
+            this.loginLink = new System.Windows.Forms.LinkLabel();
             this.appPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.recentLoginsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailList)).BeginInit();
             this.loginPanel.SuspendLayout();
             this.registerPanel.SuspendLayout();
@@ -64,6 +66,8 @@ namespace eMail
             // 
             // appPanel
             // 
+            this.appPanel.Controls.Add(this.recentLoginsLabel);
+            this.appPanel.Controls.Add(this.recentLoginsList);
             this.appPanel.Controls.Add(this.logoutBtn);
             this.appPanel.Controls.Add(this.headerLabel);
             this.appPanel.Controls.Add(this.toggleEmailsBtn);
@@ -74,6 +78,34 @@ namespace eMail
             this.appPanel.Name = "appPanel";
             this.appPanel.Size = new System.Drawing.Size(1263, 634);
             this.appPanel.TabIndex = 4;
+            // 
+            // recentLoginsLabel
+            // 
+            this.recentLoginsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.recentLoginsLabel.Location = new System.Drawing.Point(1005, 67);
+            this.recentLoginsLabel.Name = "recentLoginsLabel";
+            this.recentLoginsLabel.Size = new System.Drawing.Size(219, 21);
+            this.recentLoginsLabel.TabIndex = 7;
+            this.recentLoginsLabel.Text = "Recently logged in users";
+            this.recentLoginsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // recentLoginsList
+            // 
+            this.recentLoginsList.AllowUserToAddRows = false;
+            this.recentLoginsList.AllowUserToDeleteRows = false;
+            this.recentLoginsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.recentLoginsList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.recentLoginsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.recentLoginsList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.recentLoginsList.Location = new System.Drawing.Point(983, 91);
+            this.recentLoginsList.Name = "recentLoginsList";
+            this.recentLoginsList.ReadOnly = true;
+            this.recentLoginsList.RowTemplate.ReadOnly = true;
+            this.recentLoginsList.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.recentLoginsList.Size = new System.Drawing.Size(268, 140);
+            this.recentLoginsList.StandardTab = true;
+            this.recentLoginsList.TabIndex = 5;
+            this.recentLoginsList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.recentLoginsList_DoubleClick);
             // 
             // logoutBtn
             // 
@@ -117,11 +149,11 @@ namespace eMail
             // 
             // emailList
             // 
-            this.emailList.AllowDrop = true;
             this.emailList.AllowUserToAddRows = false;
             this.emailList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.emailList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.emailList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.emailList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.emailList.Location = new System.Drawing.Point(296, 52);
             this.emailList.Name = "emailList";
             this.emailList.ReadOnly = true;
@@ -142,9 +174,9 @@ namespace eMail
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(180, 214);
+            this.loginBtn.Location = new System.Drawing.Point(166, 214);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(132, 45);
+            this.loginBtn.Size = new System.Drawing.Size(133, 53);
             this.loginBtn.TabIndex = 3;
             this.loginBtn.Text = "Log in";
             this.loginBtn.UseVisualStyleBackColor = true;
@@ -188,7 +220,7 @@ namespace eMail
             // errorLabelLog
             // 
             this.errorLabelLog.ForeColor = System.Drawing.Color.Red;
-            this.errorLabelLog.Location = new System.Drawing.Point(3, 335);
+            this.errorLabelLog.Location = new System.Drawing.Point(3, 305);
             this.errorLabelLog.Name = "errorLabelLog";
             this.errorLabelLog.Size = new System.Drawing.Size(353, 135);
             this.errorLabelLog.TabIndex = 4;
@@ -205,7 +237,7 @@ namespace eMail
             // 
             // registerLink
             // 
-            this.registerLink.Location = new System.Drawing.Point(145, 262);
+            this.registerLink.Location = new System.Drawing.Point(145, 270);
             this.registerLink.Name = "registerLink";
             this.registerLink.Size = new System.Drawing.Size(211, 26);
             this.registerLink.TabIndex = 6;
@@ -257,9 +289,9 @@ namespace eMail
             // 
             // registerBtn
             // 
-            this.registerBtn.Location = new System.Drawing.Point(100, 250);
+            this.registerBtn.Location = new System.Drawing.Point(186, 237);
             this.registerBtn.Name = "registerBtn";
-            this.registerBtn.Size = new System.Drawing.Size(200, 45);
+            this.registerBtn.Size = new System.Drawing.Size(132, 53);
             this.registerBtn.TabIndex = 8;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
@@ -294,7 +326,7 @@ namespace eMail
             // errorLabelReg
             // 
             this.errorLabelReg.ForeColor = System.Drawing.Color.Red;
-            this.errorLabelReg.Location = new System.Drawing.Point(4, 305);
+            this.errorLabelReg.Location = new System.Drawing.Point(3, 324);
             this.errorLabelReg.Name = "errorLabelReg";
             this.errorLabelReg.Size = new System.Drawing.Size(394, 165);
             this.errorLabelReg.TabIndex = 9;
@@ -311,6 +343,7 @@ namespace eMail
             // 
             // registerPanel
             // 
+            this.registerPanel.Controls.Add(this.loginLink);
             this.registerPanel.Controls.Add(this.regHeader);
             this.registerPanel.Controls.Add(this.errorLabelReg);
             this.registerPanel.Controls.Add(this.repeatLabel);
@@ -324,6 +357,17 @@ namespace eMail
             this.registerPanel.Name = "registerPanel";
             this.registerPanel.Size = new System.Drawing.Size(400, 610);
             this.registerPanel.TabIndex = 2;
+            // 
+            // loginLink
+            // 
+            this.loginLink.Location = new System.Drawing.Point(186, 298);
+            this.loginLink.Name = "loginLink";
+            this.loginLink.Size = new System.Drawing.Size(211, 26);
+            this.loginLink.TabIndex = 7;
+            this.loginLink.TabStop = true;
+            this.loginLink.Text = "Already have an account? Log in!";
+            this.loginLink.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.loginLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.loginLink_LinkClicked);
             // 
             // EmailWindow
             // 
@@ -340,6 +384,7 @@ namespace eMail
             this.Name = "EmailWindow";
             this.Tag = "";
             this.appPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.recentLoginsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailList)).EndInit();
             this.loginPanel.ResumeLayout(false);
             this.loginPanel.PerformLayout();
@@ -347,6 +392,12 @@ namespace eMail
             this.registerPanel.PerformLayout();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label recentLoginsLabel;
+
+        private System.Windows.Forms.DataGridView recentLoginsList;
+
+        private System.Windows.Forms.LinkLabel loginLink;
 
         private System.Windows.Forms.Button logoutBtn;
 

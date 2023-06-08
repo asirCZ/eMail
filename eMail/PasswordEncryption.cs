@@ -6,8 +6,16 @@ using Konscious.Security.Cryptography;
 
 namespace eMail;
 
+/// <summary>
+///     Provides methods for encrypting and verifying passwords using the Argon2id algorithm.
+/// </summary>
 public static class PasswordEncryption
 {
+    /// <summary>
+    ///     Encrypts a password using the Argon2id algorithm.
+    /// </summary>
+    /// <param name="password">The password to encrypt.</param>
+    /// <returns>The encrypted password.</returns>
     public static string EncryptPassword(string password)
     {
         // Generate a random salt value
@@ -30,6 +38,12 @@ public static class PasswordEncryption
         return Convert.ToBase64String(salt) + "." + Convert.ToBase64String(hashedPassword);
     }
 
+    /// <summary>
+    ///     Verifies a password against a hashed password using the Argon2id algorithm.
+    /// </summary>
+    /// <param name="password">The password to verify.</param>
+    /// <param name="hashedPassword">The hashed password to compare against.</param>
+    /// <returns>True if the password is verified, false otherwise.</returns>
     public static bool VerifyPassword(string password, string hashedPassword)
     {
         // Extract the salt value and hashed password from the stored hashed password

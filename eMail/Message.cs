@@ -1,56 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace eMail;
 
+/// <summary>
+///     Represents a message with a subject, sender, recipients, and other details.
+/// </summary>
 public class Message : IBaseClass
 {
-    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId,
-        bool senderShow, bool receiverShow)
-    {
-        Id = id;
-        Subject = subject;
-        Message1 = message;
-        SendDate = sendDate;
-        SenderId = senderId;
-        ReceiverId = receiverId;
-        SenderShow = senderShow;
-        ReceiverShow = receiverShow;
-    }
+    public readonly Dictionary<int, bool> Recipients = new();
 
-    public Message(string subject, string message, int senderId, int receiverId)
+    public Message(string subject, string message, int senderId, IEnumerable<int> recipientsIds)
     {
         Subject = subject;
         Message1 = message;
         SenderId = senderId;
-        ReceiverId = receiverId;
         SenderShow = true;
-        ReceiverShow = true;
+        foreach (var id in recipientsIds) Recipients.Add(id, true);
     }
 
-    public Message(int id, string subject, string message, DateTime sendDate, int senderId, int receiverId)
+    public Message(int messageId, string subject, string message, DateTime sendDate, int senderId,
+        IEnumerable<int> recipientsIds)
     {
-        Id = id;
+        Id = messageId;
         Subject = subject;
         Message1 = message;
         SendDate = sendDate;
         SenderId = senderId;
-        ReceiverId = receiverId;
+        foreach (var id in recipientsIds) Recipients.Add(id, true);
     }
 
-    public string Subject { get; set; }
+    public string Subject { get; }
 
-    public DateTime SendDate { get; set; }
+    public DateTime SendDate { get; }
 
-    public int SenderId { get; set; }
+    public int SenderId { get; }
 
-    public int ReceiverId { get; set; }
+    public bool SenderShow { get; }
 
-    public bool SenderShow { get; set; }
-
-    public bool ReceiverShow { get; set; }
-
-    public string Message1 { get; set; }
+    public string Message1 { get; }
 
 
-    public int Id { get; set; }
+    public int Id { get; }
 }

@@ -4,10 +4,17 @@ using System.Data.SqlClient;
 
 namespace eMail;
 
+/// <summary>
+///     Represents a singleton class for managing database connections.
+/// </summary>
 public static class DatabaseSingleton
 {
     private static SqlConnection _conn;
 
+    /// <summary>
+    ///     Gets the instance of the database connection.
+    /// </summary>
+    /// <returns>The SqlConnection instance.</returns>
     public static SqlConnection GetInstance()
     {
         if (_conn == null)
@@ -20,6 +27,7 @@ public static class DatabaseSingleton
             consStringBuilder.ConnectTimeout = 1;
             _conn = new SqlConnection(consStringBuilder.ConnectionString);
             Console.WriteLine(consStringBuilder.ConnectionString);
+
             try
             {
                 _conn.Open();
@@ -40,6 +48,9 @@ public static class DatabaseSingleton
         return _conn;
     }
 
+    /// <summary>
+    ///     Closes the database connection.
+    /// </summary>
     public static void CloseConnection()
     {
         try
@@ -52,7 +63,7 @@ public static class DatabaseSingleton
         }
         catch
         {
-            // ignored
+            // Ignored
         }
         finally
         {

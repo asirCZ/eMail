@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace eMail;
+namespace eMail.Window_Forms;
 
 partial class ReadEmail
 {
@@ -39,12 +39,15 @@ partial class ReadEmail
         this.senderTxt = new System.Windows.Forms.TextBox();
         this.senderLabel = new System.Windows.Forms.Label();
         this.date = new System.Windows.Forms.Label();
+        this.listOfRecipients = new System.Windows.Forms.ListBox();
+        this.recipientsLabel = new System.Windows.Forms.Label();
+        this.replyBtn = new System.Windows.Forms.Button();
         this.SuspendLayout();
         // 
         // messageTxt
         // 
         this.messageTxt.AccessibleRole = System.Windows.Forms.AccessibleRole.Grip;
-        this.messageTxt.Location = new System.Drawing.Point(85, 58);
+        this.messageTxt.Location = new System.Drawing.Point(85, 192);
         this.messageTxt.Multiline = true;
         this.messageTxt.Name = "messageTxt";
         this.messageTxt.ReadOnly = true;
@@ -54,7 +57,7 @@ partial class ReadEmail
         // messageLabel
         // 
         this.messageLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.messageLabel.Location = new System.Drawing.Point(25, 61);
+        this.messageLabel.Location = new System.Drawing.Point(25, 192);
         this.messageLabel.Name = "messageLabel";
         this.messageLabel.Size = new System.Drawing.Size(54, 17);
         this.messageLabel.TabIndex = 5;
@@ -101,18 +104,50 @@ partial class ReadEmail
         // 
         // date
         // 
-        this.date.Location = new System.Drawing.Point(90, 388);
+        this.date.Location = new System.Drawing.Point(85, 511);
         this.date.Name = "date";
-        this.date.Size = new System.Drawing.Size(641, 19);
+        this.date.Size = new System.Drawing.Size(523, 19);
         this.date.TabIndex = 7;
         this.date.Text = "E-mail was sent on ";
+        // 
+        // listOfRecipients
+        // 
+        this.listOfRecipients.Location = new System.Drawing.Point(85, 41);
+        this.listOfRecipients.Name = "listOfRecipients";
+        this.listOfRecipients.ScrollAlwaysVisible = true;
+        this.listOfRecipients.SelectionMode = System.Windows.Forms.SelectionMode.None;
+        this.listOfRecipients.Size = new System.Drawing.Size(200, 134);
+        this.listOfRecipients.Sorted = true;
+        this.listOfRecipients.TabIndex = 13;
+        // 
+        // recipientsLabel
+        // 
+        this.recipientsLabel.Location = new System.Drawing.Point(18, 42);
+        this.recipientsLabel.Name = "recipientsLabel";
+        this.recipientsLabel.Size = new System.Drawing.Size(61, 15);
+        this.recipientsLabel.TabIndex = 12;
+        this.recipientsLabel.Text = "Recipients:";
+        this.recipientsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // replyBtn
+        // 
+        this.replyBtn.Location = new System.Drawing.Point(614, 514);
+        this.replyBtn.Name = "replyBtn";
+        this.replyBtn.Size = new System.Drawing.Size(117, 37);
+        this.replyBtn.TabIndex = 14;
+        this.replyBtn.Text = "Reply";
+        this.replyBtn.UseVisualStyleBackColor = true;
+        this.replyBtn.Click += new System.EventHandler(this.replyBtn_Click);
         // 
         // ReadEmail
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.BackColor = System.Drawing.SystemColors.Control;
-        this.ClientSize = new System.Drawing.Size(784, 461);
+        this.ClientSize = new System.Drawing.Size(784, 563);
+        this.Controls.Add(this.replyBtn);
+        this.Controls.Add(this.listOfRecipients);
+        this.Controls.Add(this.recipientsLabel);
         this.Controls.Add(this.date);
         this.Controls.Add(this.messageTxt);
         this.Controls.Add(this.messageLabel);
@@ -126,6 +161,11 @@ partial class ReadEmail
         this.ResumeLayout(false);
         this.PerformLayout();
     }
+
+    private System.Windows.Forms.Button replyBtn;
+
+    private System.Windows.Forms.ListBox listOfRecipients;
+    private System.Windows.Forms.Label recipientsLabel;
 
     private System.Windows.Forms.Label date;
 

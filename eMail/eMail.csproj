@@ -68,37 +68,34 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DAO\IDAO.cs"/>
+        <Compile Include="DAO\MessageDAO.cs"/>
+        <Compile Include="DAO\UserDAO.cs"/>
         <Compile Include="DatabaseSingleton.cs"/>
-        <Compile Include="EmailWindow.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="EmailWindow.Designer.cs">
-            <DependentUpon>EmailWindow.cs</DependentUpon>
-        </Compile>
         <Compile Include="IBaseClass.cs"/>
-        <Compile Include="IDAO.cs"/>
         <Compile Include="Message.cs"/>
-        <Compile Include="MessageDAO.cs"/>
         <Compile Include="PasswordEncryption.cs"/>
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="ReadEmail.cs">
+        <Compile Include="User.cs"/>
+        <Compile Include="Window Forms\EmailWindow.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Include="ReadEmail.Designer.cs">
+        <Compile Include="Window Forms\EmailWindow.Designer.cs">
+            <DependentUpon>EmailWindow.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Window Forms\ReadEmail.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Window Forms\ReadEmail.Designer.cs">
             <DependentUpon>ReadEmail.cs</DependentUpon>
         </Compile>
-        <Compile Include="User.cs"/>
-        <Compile Include="UserDAO.cs"/>
-        <Compile Include="WriteEmail.cs">
+        <Compile Include="Window Forms\WriteEmail.cs">
             <SubType>Form</SubType>
         </Compile>
-        <Compile Include="WriteEmail.Designer.cs">
+        <Compile Include="Window Forms\WriteEmail.Designer.cs">
             <DependentUpon>WriteEmail.cs</DependentUpon>
         </Compile>
-        <EmbeddedResource Include="EmailWindow.resx">
-            <DependentUpon>EmailWindow.cs</DependentUpon>
-        </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,10 +105,13 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <EmbeddedResource Include="ReadEmail.resx">
+        <EmbeddedResource Include="Window Forms\EmailWindow.resx">
+            <DependentUpon>EmailWindow.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Window Forms\ReadEmail.resx">
             <DependentUpon>ReadEmail.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="WriteEmail.resx">
+        <EmbeddedResource Include="Window Forms\WriteEmail.resx">
             <DependentUpon>WriteEmail.cs</DependentUpon>
         </EmbeddedResource>
         <None Include="packages.config"/>
@@ -129,7 +129,7 @@
         <None Include="App.config"/>
     </ItemGroup>
     <ItemGroup>
-        <Content Include="databaseScript.sql"/>
+        <Content Include="Database\databaseScript.sql"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

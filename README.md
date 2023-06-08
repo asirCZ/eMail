@@ -23,9 +23,6 @@ This Email Client application is built using C# and integrates with a local MSSQ
 4. Build and run the application in Visual Studio (Rider etc.).
 5. Log in or create an account.
 
-## Contributing
-Contributions to this project are welcome. To get started, fork this repository and create a new branch for your changes. Once you have made your changes, submit a pull request to have them reviewed and merged into the main branch.
-
 ## License
 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
